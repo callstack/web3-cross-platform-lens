@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/drawer';
 import { StyleSheet, View } from 'react-native';
 import { W3mButton } from '../web3modal';
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 
 function CustomDrawerContent(props) {
   return (
@@ -15,7 +15,7 @@ function CustomDrawerContent(props) {
       </View>
       <DrawerItemList {...props} />
       <View style={styles.w3mButton}>
-        <W3mButton />
+        <W3mButton balance="hide" />
       </View>
     </DrawerContentScrollView>
   );

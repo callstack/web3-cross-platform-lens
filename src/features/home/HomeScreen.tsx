@@ -1,44 +1,41 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
-import { useAccount, useSignMessage } from 'wagmi';
+import { StyleSheet, View } from 'react-native';
+import { useFeed, useSession, ProfileSession } from '../../lib/lens-sdk';
 import Text from '../../components/Text';
-import { theme } from '../../theme';
-import NftList from './NftList';
+import FeedList from './FeedList';
 
 export default function HomeScreen() {
-  const { isConnected } = useAccount();
-  const { isSuccess: isSigned, signMessage } = useSignMessage({
-    message: 'Sign this message to prove you are the owner of this wallet',
+  const { data: session } = useSession();
+
+  const { data, loading } = useFeed({
+    where: {
+      for: (session as ProfileSession).profile?.id,
+    },
   });
 
-  if (!isConnected) {
+  if (data?.length === 0) {
     return (
-      <View style={styles.container}>
-        <Text>Connect wallet to display NFTs</Text>
+      <View style={styles.emptyContainer}>
+        {loading ? <Text>Loading...</Text> : <Text>Your feed is empty ☹️</Text>}
       </View>
     );
   }
 
-  if (!isSigned) {
-    return (
-      <View style={styles.container}>
-        <Button
-          title="Sign Message"
-          color={theme.colors.primary}
-          onPress={() => signMessage()}
-        />
-      </View>
-    );
-  }
-
-  return <NftList />;
+  return (
+    <View style={styles.container}>
+      <FeedList feed={data} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 20,
+  },
+  emptyContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 20,
   },
 });

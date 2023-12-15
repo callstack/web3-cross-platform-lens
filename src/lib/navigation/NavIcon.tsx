@@ -13,10 +13,10 @@ export function getIconForRoute(
   routeName: string,
 ): keyof typeof Octicons.glyphMap {
   switch (routeName) {
+    case 'SignIn':
+      return 'shield-lock';
     case 'Home':
       return 'apps';
-    case 'Balance':
-      return 'ruby';
     case 'Notifications':
       return 'bell';
     case 'Messages':
