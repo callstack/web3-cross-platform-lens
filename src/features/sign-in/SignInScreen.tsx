@@ -12,7 +12,6 @@ export default function SignInScreen() {
     for: address,
   });
 
-  // TODO: useLastLoggedInProfile seems to not be updating right after logout
   const { data: lastLoggedInProfile } = useLastLoggedInProfile({
     for: address,
   });
