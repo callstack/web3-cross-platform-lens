@@ -1,4 +1,4 @@
-# web3-cross-platform-dapp
+# web3-cross-platform-lens
 
 This repository showcases how to build a modern cross-platform (web / iOS / Android) dApp on [Lens Protocol](https://www.lens.xyz/) with [Expo](https://expo.dev), [React Native for Web](https://necolas.github.io/react-native-web/), [wagmi](https://wagmi.sh) and [WalletConnect's Web3Modal](https://docs.walletconnect.com/web3modal/about)
 
