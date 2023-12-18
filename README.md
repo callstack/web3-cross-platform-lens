@@ -11,6 +11,7 @@ This repository showcases how to build a modern cross-platform (web / iOS / Andr
 - A [Wallet Connect Cloud](https://cloud.walletconnect.com/sign-in) project ID
 - Expo Go app installed in your smartphone
 - One or more web3 wallets installed in your smartphone (e.g. MetaMask, Rainbow Wallet, Trust Wallet, etc)
+- One or more web3 wallets installed in your browser (e.g. MetaMask, Rainbow Wallet, Trust Wallet, etc)
 
 ## How to run
 
@@ -24,4 +25,4 @@ This repository showcases how to build a modern cross-platform (web / iOS / Andr
 
 ### Web
 - `yarn web`
-- Open `https://localhost:19006/`
+- Open `http://localhost:19006/`
