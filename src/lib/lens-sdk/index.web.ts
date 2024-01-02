@@ -7,5 +7,6 @@ const lensConfig: LensConfig = {
   environment: development,
 };
 
+// Re-export everything from the Lens SDK, as well as the config
 export * from '@lens-protocol/react-web';
 export { lensConfig };

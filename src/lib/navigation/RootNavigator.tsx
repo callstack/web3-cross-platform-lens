@@ -88,7 +88,7 @@ const RootNavigator = () => {
           <RootTab.Screen
             key={screen.name}
             name={screen.name}
-            component={session?.authenticated ? screen.component : SignInScreen}
+            component={screen.component}
             options={{
               tabBarLabel: () => null,
               tabBarIcon: ({ focused }) => (

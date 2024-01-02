@@ -13,5 +13,6 @@ const lensConfig: LensConfig = {
   },
 };
 
+// Re-export everything from the Lens SDK, as well as the config
 export * from '@lens-protocol/react-native';
 export { lensConfig };
