@@ -2,11 +2,9 @@ import React from 'react';
 import { Platform } from 'react-native';
 import HomeScreen from '../../features/home/HomeScreen';
 import ProfileScreen from '../../features/profile/ProfileScreen';
-import SignInScreen from '../../features/sign-in/SignInScreen';
 import NotificationsScreen from '../../features/notifications/NotificationsScreen';
 import MessagesScreen from '../../features/messages/MessagesScreen';
 import BookmarksScreen from '../../features/bookmarks/BookmarksScreen';
-import { useSession, SessionType } from '../lens-sdk';
 import NavIcon from './NavIcon';
 import DrawerContent from './DrawerContent';
 import TabHeader from './TabHeader';
@@ -36,11 +34,6 @@ const screens = [
 ] as const;
 
 const RootNavigator = () => {
-  const { data: session } = useSession();
-
-  const authenticated =
-    session?.authenticated && session?.type === SessionType.WithProfile;
-
   if (Platform.OS === 'web') {
     return (
       <RootDrawer.Navigator
@@ -49,31 +42,18 @@ const RootNavigator = () => {
           header: () => null,
           drawerType: 'permanent',
         }}>
-        {authenticated ? (
-          screens.map(screen => (
-            <RootDrawer.Screen
-              key={screen.name}
-              name={screen.name}
-              component={screen.component}
-              options={{
-                drawerIcon: ({ focused }) => (
-                  <NavIcon screenName={screen.name} focused={focused} />
-                ),
-              }}
-            />
-          ))
-        ) : (
+        {screens.map(screen => (
           <RootDrawer.Screen
-            name="SignIn"
-            component={SignInScreen}
+            key={screen.name}
+            name={screen.name}
+            component={screen.component}
             options={{
-              title: 'Sign In',
               drawerIcon: ({ focused }) => (
-                <NavIcon screenName="SignIn" focused={focused} />
+                <NavIcon screenName={screen.name} focused={focused} />
               ),
             }}
           />
-        )}
+        ))}
       </RootDrawer.Navigator>
     );
   }
@@ -83,32 +63,19 @@ const RootNavigator = () => {
       screenOptions={{
         header: () => <TabHeader />,
       }}>
-      {authenticated ? (
-        screens.map(screen => (
-          <RootTab.Screen
-            key={screen.name}
-            name={screen.name}
-            component={screen.component}
-            options={{
-              tabBarLabel: () => null,
-              tabBarIcon: ({ focused }) => (
-                <NavIcon screenName={screen.name} focused={focused} />
-              ),
-            }}
-          />
-        ))
-      ) : (
+      {screens.map(screen => (
         <RootTab.Screen
-          name="SignIn"
-          component={SignInScreen}
+          key={screen.name}
+          name={screen.name}
+          component={screen.component}
           options={{
-            title: 'Sign In',
+            tabBarLabel: () => null,
             tabBarIcon: ({ focused }) => (
-              <NavIcon screenName="SignIn" focused={focused} />
+              <NavIcon screenName={screen.name} focused={focused} />
             ),
           }}
         />
-      )}
+      ))}
     </RootTab.Navigator>
   );
 };
