@@ -16,6 +16,7 @@ function PublicationProfile({ profile }: PublicationProfileProps) {
 
   return (
     <View style={styles.profileContainer}>
+      {/* Display author avatar */}
       {avatarImageUri ? (
         <Image
           accessibilityIgnoresInvertColors
@@ -27,6 +28,8 @@ function PublicationProfile({ profile }: PublicationProfileProps) {
           <Octicons name="person" size={16} color={theme.colors.disabled} />
         </View>
       )}
+
+      {/* Display author name and handle */}
       <View style={styles.textContainer}>
         {profile.metadata?.displayName && (
           <Text style={styles.name} numberOfLines={1}>

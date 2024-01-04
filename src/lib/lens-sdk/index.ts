@@ -1,4 +1,4 @@
-import { LensConfig, development } from '@lens-protocol/react-native';
+import { LensConfig, development } from '@lens-protocol/react-native'; // <-- Import the react-native package
 import { bindings as wagmiBindings } from '@lens-protocol/wagmi';
 import * as SecureStore from 'expo-secure-store';
 

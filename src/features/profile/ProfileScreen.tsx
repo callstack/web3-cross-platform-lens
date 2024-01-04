@@ -13,7 +13,10 @@ import {
 } from '../../lib/lens-sdk';
 
 export default function ProfileScreen() {
+  // Get the session
   const { data: session } = useSession();
+
+  // Get the logout handler
   const { execute: logout, loading: logoutLoading } = useLogout();
 
   if (!session?.authenticated) {
@@ -24,6 +27,7 @@ export default function ProfileScreen() {
     return <SignInScreen />;
   }
 
+  // Get the cover and avatar images
   const profile = session.profile;
   const coverImageUri = profile.metadata?.coverPicture?.optimized?.uri;
   const avatarImageUri = (profile.metadata?.picture as ProfilePictureSet)
@@ -31,21 +35,27 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Display the cover image in the background */}
       <ImageBackground
         accessibilityIgnoresInvertColors
         style={styles.coverImage}
         source={{ uri: coverImageUri }}>
         <View style={styles.overlay} />
+
+        {/* Display the avatar image in the middle */}
         <Image
           accessibilityIgnoresInvertColors
           style={styles.avatarImage}
           source={{ uri: avatarImageUri }}
         />
+
+        {/* Display the name and handle */}
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{profile.metadata?.displayName}</Text>
           <Text style={styles.handle}>@{profile.handle?.localName}</Text>
         </View>
 
+        {/* Display following and followers count */}
         <View style={styles.statsContainer}>
           <View style={styles.statsItem}>
             <Text>Following</Text>
@@ -58,6 +68,7 @@ export default function ProfileScreen() {
         </View>
       </ImageBackground>
 
+      {/* Display a button to logout */}
       <View style={styles.body}>
         <Button
           title="Logout"

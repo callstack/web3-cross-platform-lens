@@ -3,19 +3,23 @@ import { StyleSheet, View } from 'react-native';
 import { useAccount } from 'wagmi';
 import Text from '../../components/Text';
 import { useLastLoggedInProfile, useProfilesManaged } from '../../lib/lens-sdk';
-import ProfileCard from '../../components/ProfileCard';
+import ProfileCard from './ProfileCard';
 
 export default function SignInScreen() {
+  // Get the connected wallet address
   const { isConnected, address } = useAccount();
 
+  // Query the profiles managed by the connected wallet address
   const { data: profiles = [] } = useProfilesManaged({
     for: address,
   });
 
+  // Query the last logged in profile for the connected wallet address
   const { data: lastLoggedInProfile } = useLastLoggedInProfile({
     for: address,
   });
 
+  // Sort the profiles so that the last logged in profile is at the top
   const sortedProfiles = [...profiles].sort((a, b) => {
     if (a.id === lastLoggedInProfile?.id) {
       return -1;
@@ -31,6 +35,8 @@ export default function SignInScreen() {
       {isConnected ? (
         <>
           <Text>Choose profile to sign in with</Text>
+
+          {/* Render a profile card for each profile */}
           {sortedProfiles.map(profile => (
             <ProfileCard
               key={profile.id}

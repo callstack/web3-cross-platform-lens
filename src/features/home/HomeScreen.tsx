@@ -7,12 +7,14 @@ import FeedList from './FeedList';
 export default function HomeScreen() {
   const { data: session } = useSession();
 
+  // Get the feed for the logged in profile
   const { data, loading } = useFeed({
     where: {
       for: (session as ProfileSession).profile?.id,
     },
   });
 
+  // If no data, feed is either loading or empty (not following anyone)
   if (data?.length === 0) {
     return (
       <View style={styles.emptyContainer}>

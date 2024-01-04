@@ -2,9 +2,9 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Octicons from '@expo/vector-icons/Octicons';
-import Text from '../Text';
+import Text from '../../components/Text';
 import { Profile, ProfilePictureSet } from '../../lib/lens-sdk';
-import { LensButton } from '../LensButton';
+import { LensButton } from '../../components/LensButton';
 import { theme } from '../../lib/theme';
 
 type ProfileCardProps = {
@@ -18,6 +18,7 @@ function ProfileCard({ profile, isLastLoggedInProfile }: ProfileCardProps) {
     ?.thumbnail?.uri;
 
   return (
+    // Display the cover image as the background of the card
     <ImageBackground
       style={[
         styles.container,
@@ -33,6 +34,7 @@ function ProfileCard({ profile, isLastLoggedInProfile }: ProfileCardProps) {
       <View style={styles.overlay} />
       <View style={styles.innerContainer}>
         <View style={styles.profileContainer}>
+          {/* Display the profile avatar */}
           {avatarImageUri ? (
             <Image
               accessibilityIgnoresInvertColors
@@ -45,19 +47,26 @@ function ProfileCard({ profile, isLastLoggedInProfile }: ProfileCardProps) {
             </View>
           )}
           <View style={styles.textContainer}>
+            {/* Display the profile name */}
             {profile.metadata?.displayName && (
               <Text style={styles.name} numberOfLines={1}>
                 {profile.metadata.displayName}
               </Text>
             )}
+
+            {/* Display the profile handle */}
             {profile.handle?.localName && (
               <Text numberOfLines={1}>@{profile.handle?.localName}</Text>
             )}
+
+            {/* Display the last used profile indicator */}
             {isLastLoggedInProfile && (
               <Text style={styles.lastUsedProfile}>Last used</Text>
             )}
           </View>
         </View>
+
+        {/* Display the button to sign in */}
         <LensButton profileId={profile.id} />
       </View>
     </ImageBackground>

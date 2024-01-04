@@ -21,12 +21,15 @@ function PublicationItem({ item }: PostItemProps) {
 
   return (
     <View style={styles.container}>
+      {/* Display profile information for who posted the publication */}
       <PublicationProfile profile={profile} />
 
+      {/* Display the actual publication content */}
       <View style={styles.contentContainer}>
         <Text>{publication.metadata?.content}</Text>
       </View>
 
+      {/* Display the reactions for the publication with a button to toggle upvote */}
       <PublicationReactions publication={publication} />
     </View>
   );

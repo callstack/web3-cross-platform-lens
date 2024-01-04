@@ -36,8 +36,9 @@ const screens = [
 ] as const;
 
 const RootNavigator = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession(); // Get the session
 
+  // Check if user is authenticated
   const authenticated =
     session?.authenticated && session?.type === SessionType.WithProfile;
 
@@ -49,6 +50,7 @@ const RootNavigator = () => {
           header: () => null,
           drawerType: 'permanent',
         }}>
+        {/* If authenticated, render all the routes normally, otherwise, render only the SignIn route */}
         {authenticated ? (
           screens.map(screen => (
             <RootDrawer.Screen
@@ -83,6 +85,7 @@ const RootNavigator = () => {
       screenOptions={{
         header: () => <TabHeader />,
       }}>
+      {/* If authenticated, render all the routes normally, otherwise, render only the SignIn route */}
       {authenticated ? (
         screens.map(screen => (
           <RootTab.Screen

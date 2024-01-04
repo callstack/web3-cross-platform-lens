@@ -14,8 +14,10 @@ type PublicationProfileProps = {
 };
 
 function PublicationProfile({ publication }: PublicationProfileProps) {
+  // Get the toggle reaction handler
   const { execute: toggleReaction } = useReactionToggle();
 
+  // On press, toggle the reaction passing the publication
   const toggleUpvote = async () => {
     await toggleReaction({
       reaction: PublicationReactionType.Upvote,
@@ -50,6 +52,7 @@ function PublicationProfile({ publication }: PublicationProfileProps) {
         )}
       </Pressable>
 
+      {/* Display the total upvotes */}
       <Text
         style={{
           color: publication.operations.hasUpvoted
