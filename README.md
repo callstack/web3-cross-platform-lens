@@ -2,12 +2,13 @@
 
 This repository showcases how to build a modern cross-platform (web / iOS / Android) dApp on [Lens Protocol](https://www.lens.xyz/) with [Expo](https://expo.dev), [React Native for Web](https://necolas.github.io/react-native-web/), [wagmi](https://wagmi.sh) and [WalletConnect's Web3Modal](https://docs.walletconnect.com/web3modal/about)
 
+Read the article for a more detailed explanation: [How to Build Universal Lens Protocol Social Apps With React Native](https://www.callstack.com/blog/how-to-build-universal-lens-protocol-social-apps-with-react-native)
+
 ![demo.gif](demo.gif)
 
 ## Requirements
 
 - [Expo environment setup](https://docs.expo.dev/get-started/installation/#requirements) (Node.js, Git, Watchman)
-- A Lens Protocol profile
 - A [Wallet Connect Cloud](https://cloud.walletconnect.com/sign-in) project ID
 - Expo Go app installed in your smartphone
 - One or more web3 wallets installed in your smartphone (e.g. MetaMask, Rainbow Wallet, Trust Wallet, etc)
